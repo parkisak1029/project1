@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Script-Type" content="text/javascript"/>
+    <meta http-equiv="Content-Style-Type" content="text/css"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="expires" content="-1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link type="text/css" rel="stylesheet" href="/lib/bootstrap-4.6.0/dist/css/bootstrap.css">
+    <script type="text/javascript" src="/lib/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+    <title>SIGNUP</title>
+</head>
+
+<body>
+<p>
+<div class="container" style="margin-top: 16px;">
+    <div class="jumbotron" style="width:500px; margin:auto">
+
+        <div class="bm-login-form" style='width:400px; margin-left:auto; margin-right:auto; border:1px'>
+
+            <div class="starter-template">
+                <h5> 회원가입</h5>
+                <hr>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail">아이디(이메일로 입력)</label>
+                <input type="email" class="form-control" name="inputEmail" id="inputEmail" aria-describedby="emailHelp"
+                       placeholder="이메일 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="inputPassword1">암 호</label>
+                <input type="password" class="form-control" name="inputPassword1" id="inputPassword1"
+                       placeholder="암호 입력">
+            </div>
+            <div class="form-group">
+                <label for="inputPassword2">한번더</label>
+                <input type="password" class="form-control" name="inputPassword2" id="inputPassword2"
+                       placeholder="암호를 한번더 입력해주세요">
+            </div>
+            <div class="form-group">
+                <label for="inputName">이름</label>
+                <input type="text" class="form-control" name="inputName" id="inputName" placeholder="이름을 입력하세요">
+            </div>
+
+            <hr>
+            <button id="signUpButton" class="btn btn-primary">회원가입</button>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script>
+    $('#signUpButton').click(() => {
+        $.ajax({
+            url: '/user/signUp',
+            method: 'POST',
+            data: {
+                email: $('#inputEmail').val(),
+                password1: $('#inputPassword1').val(),
+                password2: $('#inputPassword2').val(),
+                name: $('#inputName').val()
+            },
+            dataType: 'json'
+        })
+            .done(function (json) {
+                if (json.result === false) {
+                    alert(json.message)
+                } else {
+                    location.replace('/login')
+                }
+            })
+            .fail(function (xhr, status, errorThrown) {
+                console.log('POST /system/console error')
+            })
+    })
+</script>

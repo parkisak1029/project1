@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="referrer" content="no-referrer" />
+        <meta name="author" content="" />
+        <title>Selling</title>
+        <link rel="icon" type="image/x-icon" href="/submain/assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/submain/css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/">아아M</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/music/selling">Selling</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/board/page">Board</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/board/contact">Donation</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/cartlist/cart">Cart</a></li>
+                        <%
+                        if(userInfo) {
+                        %> 
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/logout">Logout</a></li>  
+                        <div class='session'><%= userInfo %>님 환영합니다!</div>
+                        <% } else{ %> 
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-2 py-lg-4" href="/login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/signUp">Sign up</a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('/submain/assets/img/about-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>Selling</h1>                         
+                            <span class="subheading">Discover the best music</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <%
+                        for(var i = (selling * selling_num) - selling_num; i < (selling * selling_num); i++) {
+                        if(i
+                         > length){
+                        i++;
+                        var damp = rows[i] + 1
+                        }else{
+                        var data = rows[i]
+                        %>
+                <a class="size">
+                    <img src = '<%= data.img %>' class="imgss">
+                    <form action="/cartlist/Selling" method='POST'>
+                        <input type="hidden" name="idx" value="<%= data.idx%>">
+                        <input type="hidden" name="img" value="<%= data.img%>">
+                        <input type="hidden" name="titlename" value="<%= data.titlename%>">
+                        <input type="hidden" name="singer" value="<%= data.singer%>">
+                        <input type="hidden" name="price" value="<%= data.price%>">
+                        <br>
+                        <div style ='text-align: center; position: absolute; right:0px;'><button class="btn btn-primary text-uppercase">장바구니</button></div>
+                        <br>
+                    </form>
+                    <br>
+                </a>
+                <div class="exit"> Title : <%= data.titlename %><br>
+                <br>
+                singer : <%= data.singer %><br>
+                <br>
+                price : <%= data.price %>
+                <br>
+                <!-- <a style="text-decoration: none; color: black" href="/music/sintx/<%= data.idx %>">음원등록하기</a> -->
+                <br><audio controls="controls">
+                    <source src="<%= data.mp3 %>"/>
+                </audio>
+            </div>
+            <% }
+            }
+            %>
+
+            <% if(userInfo) { %>
+                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="/music/uploadmusic">음원 등록하기</a></div>
+                    <% } else { %>
+                        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="/login" onclick="alert('로그인 후 사용해주세요')">음원 등록하기</a></div>
+                        <% } %>
+            <%
+                    for(var j = 0; j < rows.length / selling_num; j++){
+                    %>
+                    <!-- row.length = 글총갯수  page_num= 페이지당 최대 글수 -->
+                   
+                    <a href="/music/selling/<%= j + 1 %>" class='slis'>[<%= j + 1 %>]</a>
+                    <%
+                    }
+                    %>
+                </div>
+            </div>
+        </main>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; 2021 - 아아M</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>
+            function showPopup(){ 
+                window.open("musict", "place", "width=600, height=600, left=100, top=50"); }
+        </script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="submain/js/scripts.js"></script>
+    </body>
+</html>

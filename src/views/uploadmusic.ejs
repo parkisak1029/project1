@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="/submain/assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/submain/css/styles.css" rel="stylesheet" />
+    <link href="/submain/css/musicupload.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="/">아아M</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/music/selling">Selling</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/board/page">Board</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/board/contact">Donation</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/cartlist/cart">Cart</a></li>  
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead" style="background-image: url('/submain/assets/img/about-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>Selling</h1>                         
+                        <span class="subheading">Discover the best music</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+        <div class="col-lg-6">
+            
+    <form class="upload" method="post" id="contactForm" action="/music/uploadmusic" enctype="multipart/form-data">
+        <div class="form-floating mb-3">
+            <input class="form-control" id="name" type="text" name="titlename" placeholder="Title name"/>
+            <label for="name">노래제목</label>
+        </div>
+        <!-- Email address input-->
+        <div class="form-floating mb-3">
+            <input class="form-control" id="singer" type="text" name="singer" placeholder="singer"/>
+            <label for="form-control">가수</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="price" type="text" name="price" placeholder="Enter your message here..." value="KRW"></input>
+            <label for="message">가격</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="passwod" type="text" name="passwod" placeholder="expq"/></input>
+            <label for="form-control">비밀번호</label>
+        </div>
+        <div class="form-floating mb-3">
+            <label class="file">음악등록</label>
+            <br>
+            <input class="form-control" type="file" name="mp3" id="input-file">
+        </div>
+        <div class="d-grid"><button class="btn btn-primary text-uppercase"  id="submitButton">Submit</button>
+    </form>
+    </div>
+    </div>
+    </div>
+    <footer class="border-top">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item">
+                    <div class="small text-center text-muted fst-italic">Copyright &copy; 2021 - 아아M</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="submain/js/scripts.js"></script>
+</body>
+</html>
